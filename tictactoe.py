@@ -1,3 +1,5 @@
+# This is a basic version of the popular tic-tac-toe game, it pits the user
+# against the computer
 def display_board(board):
     # The function accepts one parameter containing the board's current status
     # and prints it out to the console.
@@ -41,7 +43,7 @@ def make_list_of_free_fields(board):
 
 def victory_for(board):
     # The function analyzes the board's status in order to check if 
-    # the player using 'O's or 'X's has won the game
+    # their is a winning condition
 
     if board[0][0] == board [0][1] == board [0][2]:
         return True
@@ -62,7 +64,8 @@ def victory_for(board):
     else:
         return
 
-def draw_move(board):
+def computer_move(board):
+    # A function where a random number between 1 and 9 is selected by the computer
     from random import randrange
     computer_choice = randrange(1,10)
     while not computer_choice in make_list_of_free_fields(board):
@@ -73,6 +76,7 @@ def draw_move(board):
                 board[x][y] = "X"
 
 board = [[1,2,3],[4,5,6],[7,8,9]]
+# The main body of the file
 while True:
     display_board(board)
     enter_move(board)
@@ -83,7 +87,7 @@ while True:
     if len(make_list_of_free_fields(board)) > 0:
         display_board(board)
         print("Computer please take your turn:")
-        draw_move(board)
+        computer_move(board)
         if victory_for(board):
             display_board(board)
             print("Congrats X won the game")
